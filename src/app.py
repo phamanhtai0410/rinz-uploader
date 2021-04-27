@@ -16,8 +16,11 @@ from jsonschema import ValidationError
 # For import *
 __all__ = ['create_app']
 
+from .place import rest_place
+
 DEFAULT_BLUEPRINTS = (
     rest_service,
+    rest_place,
 )
 
 

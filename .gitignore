@@ -1,6 +1,6 @@
 .idea
 *.pyc
-code/config
+src/config
 test
 .vscode
 venv
