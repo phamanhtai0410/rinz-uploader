@@ -7,7 +7,7 @@ from sentry_sdk.integrations.flask import FlaskIntegration
 from sentry_sdk import capture_message
 
 from .config import DefaultConfig
-from .extensions import redis_cache, db
+# from .extensions import redis_cache, db
 
 
 def create_app(config=None, app_name=None, blueprints=None):
@@ -38,11 +38,11 @@ def configure_app(app, config=None):
 
 def configure_extensions(app):
     # flask-sqlalchemy
-    db.init_app(app)
+    # db.init_app(app)
     print('Connect with Mysql successfully')
 
     # Redis
-    redis_cache.init_app(app)
+    # redis_cache.init_app(app)
     print('Init Redis cache successfully')
 
     # Sentry

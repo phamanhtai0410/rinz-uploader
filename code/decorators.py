@@ -2,7 +2,7 @@
 import json
 from functools import wraps
 from code.utils import json_encode_hook, json_decode_hook, jsonify_dict, log_any
-from code.extensions import redis_cache, redis_cluster
+# from code.extensions import redis_cache, redis_cluster
 from flask import request, abort, jsonify
 from sentry_sdk import capture_exception
 import jwt
@@ -27,13 +27,13 @@ def cache_id(timeout=604800, key_prefix='common', keep_timeout=False):
         @wraps(f)
         def wrapper(*args, **kwargs):
             key = "%s:id:%s" % (key_prefix, args[0])
-            output = redis_cluster.get(key)
+            output = None # redis_cluster.get(key)
             if output:
                 return json.loads(output, object_hook=json_decode_hook)
 
             output = f(*args, **kwargs)
             # Set data to redis
-            redis_cluster.setex(key, timeout, json.dumps(output, default=json_encode_hook))
+            # redis_cluster.setex(key, timeout, json.dumps(output, default=json_encode_hook))
             return output
 
         return wrapper
@@ -60,13 +60,13 @@ def cache_filter(timeout=86400, key_prefix='common', key_fields=[], keep_timeout
             for key_field in key_fields:
                 _filter[key_field] = kwargs.get(key_field)
             key = "%s:%s" % (key_prefix, jsonify_dict(_filter))
-            output = redis_cluster.get(key)
+            output = None # redis_cluster.get(key)
             if output:
                 return json.loads(output, object_hook=json_decode_hook)
 
             output = f(*args, **kwargs)
             # Set data to redis
-            redis_cluster.setex(key, timeout, json.dumps(output, default=json_encode_hook))
+            # redis_cluster.setex(key, timeout, json.dumps(output, default=json_encode_hook))
             return output
 
         return wrapper
@@ -96,7 +96,7 @@ def get_user_info(f):
 
         rq_user_token = rq_user_token.split(' ')[1]
         # Get user token on Redis user info
-        token_existed = redis_cluster.get(rq_user_token)
+        token_existed = None # redis_cluster.get(rq_user_token)
         # TODO below line for testing
         # redis_user_info.setex(rq_user_token, 15000, 1)
 

@@ -2,7 +2,7 @@
 
 from sentry_sdk import capture_message
 from ..tasks import celery
-from .models import Logs
+# from .models import Logs
 
 
 @celery.task(name='base.common.health_check_task', rate_limit='10/s')

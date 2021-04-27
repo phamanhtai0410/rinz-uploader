@@ -8,7 +8,7 @@ load_dotenv()
 
 
 class BaseConfig(object):
-    PROJECT = "tiktik-service"
+    PROJECT = "the-cua-tui-service"
 
     PROJECT_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
@@ -46,3 +46,4 @@ class DefaultConfig(BaseConfig):
 
     REDIS_URL = os.getenv('REDIS_URL')
     REDIS_USERS_STARTUP_NODES = json.loads(os.getenv('REDIS_USERS_STARTUP_NODES'))
+    MAP_KEY = os.getenv('MAP_KEY')

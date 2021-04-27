@@ -15,7 +15,8 @@ from bson import ObjectId
 from flask import make_response
 import msgpack
 
-from .extensions import redis_cluster, redis_cache
+
+# from .extensions import redis_cluster, redis_cache
 
 
 def get_current_time():
@@ -240,7 +241,7 @@ def convert_to_int(string):
 
 
 def save_token_redis(token):
-    redis_cluster.setex(token, 259200, 1)
+    # redis_cluster.setex(token, 259200, 1)
     return True
 
 
@@ -294,9 +295,9 @@ def get_redis_cluster(key):
     :param key:
     :return:
     """
-    output = redis_cluster.get(key)
-    if output:
-        return load_data(output, json.loads)
+    # output = redis_cluster.get(key)
+    # if output:
+    #     return load_data(output, json.loads)
 
     return None
 
@@ -309,6 +310,6 @@ def set_redis_cache(key, value):
     :return:
     """
     output = dump_data(value)
-    redis_cache.set(key, output)
+    # redis_cache.set(key, output)
 
     return None

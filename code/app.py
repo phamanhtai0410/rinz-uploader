@@ -10,7 +10,7 @@ from flask import Flask, request, jsonify
 from flask_babel import Babel
 from .common import rest_service
 from .config import DefaultConfig
-from .extensions import redis_cache, db
+# from .extensions import redis_cache, db
 from jsonschema import ValidationError
 
 # For import *
@@ -56,11 +56,11 @@ def configure_app(app, config=None):
 
 def configure_extensions(app):
     # flask-sqlalchemy
-    db.init_app(app)
+    # db.init_app(app)
     print('Connect with Mysql successfully')
 
     # Redis
-    redis_cache.init_app(app)
+    # redis_cache.init_app(app)
     print('Init Redis cache successfully')
     # redis_user_info.init_app(app, config_prefix='REDIS_USERS')
     # print('Init Redis user info successfully')
@@ -87,7 +87,7 @@ def configure_blueprints(app, blueprints):
     """Configure blueprints in views."""
 
     for blueprint in blueprints:
-        app.register_blueprint(blueprint, url_prefix="{}/{}".format("/v1/base", blueprint.url_prefix))
+        app.register_blueprint(blueprint, url_prefix="{}/{}".format("/v1/map", blueprint.url_prefix))
 
 
 def configure_template_filters(app):
