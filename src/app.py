@@ -76,6 +76,7 @@ def configure_extensions(app):
         sentry_sdk.init(
             dsn=DefaultConfig.SENTRY_DSN,
             integrations=[FlaskIntegration()],
+            server_name=DefaultConfig.PROJECT
         )
 
         capture_message('{} starts'.format(DefaultConfig.PROJECT))

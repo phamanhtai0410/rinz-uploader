@@ -8,7 +8,7 @@ load_dotenv()
 
 
 class BaseConfig(object):
-    PROJECT = "the-cua-tui-service"
+    PROJECT = "the-cua-tui-map"
 
     PROJECT_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
