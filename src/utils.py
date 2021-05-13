@@ -11,7 +11,7 @@ import json
 import requests
 from datetime import datetime
 
-from bson import ObjectId
+# from bson import ObjectId
 from flask import make_response
 import msgpack
 
@@ -282,10 +282,10 @@ def get_redis_cache(key):
     :param key:
     :return:
     """
-    output = redis_cache.get(key)
-    if output:
-        return load_data(output, json.loads)
-
+    # output = redis_cache.get(key)
+    # if output:
+    #     return load_data(output, json.loads)
+    #
     return None
 
 

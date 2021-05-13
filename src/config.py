@@ -8,7 +8,7 @@ load_dotenv()
 
 
 class BaseConfig(object):
-    PROJECT = "the-cua-tui-service"
+    PROJECT = "the-cua-tui-map"
 
     PROJECT_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
@@ -45,5 +45,5 @@ class DefaultConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
 
     REDIS_URL = os.getenv('REDIS_URL')
-    REDIS_USERS_STARTUP_NODES = json.loads(os.getenv('REDIS_USERS_STARTUP_NODES'))
+    # REDIS_USERS_STARTUP_NODES = json.loads(os.getenv('REDIS_USERS_STARTUP_NODES'))
     MAP_KEY = os.getenv('MAP_KEY')

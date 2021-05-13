@@ -16,8 +16,11 @@ from jsonschema import ValidationError
 # For import *
 __all__ = ['create_app']
 
+from .place import rest_place
+
 DEFAULT_BLUEPRINTS = (
     rest_service,
+    rest_place,
 )
 
 
@@ -73,6 +76,7 @@ def configure_extensions(app):
         sentry_sdk.init(
             dsn=DefaultConfig.SENTRY_DSN,
             integrations=[FlaskIntegration()],
+            server_name=DefaultConfig.PROJECT
         )
 
         capture_message('{} starts'.format(DefaultConfig.PROJECT))

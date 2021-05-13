@@ -3,7 +3,7 @@
 from flask import Blueprint, request, abort, g
 from flask_expects_json import expects_json
 
-from code.utils import make_cross_domain_response, log_any
+from src.utils import make_cross_domain_response, log_any
 from ..constants import AppConstants
 # from .tasks import add_task
 

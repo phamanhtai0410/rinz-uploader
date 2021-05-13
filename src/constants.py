@@ -31,7 +31,7 @@ class AppConstants(object):
     STATUS_OK = 1
     STATUS_NOT_OK = 0
 
-    # Error code
+    # Error src
     NOT_E = ''
     E_VOTE_KILL_OVER = 'E_VOTE_KILL_OVER'
     E_VOTE_KILL_END = 'E_VOTE_KILL_END'
