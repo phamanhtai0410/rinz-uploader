@@ -19,6 +19,8 @@ from flask import make_response
 # from .extensions import redis_cluster, redis_cache
 from sentry_sdk import capture_exception
 
+from src.extensions import s3
+
 
 def get_current_time():
     return datetime.utcnow()
