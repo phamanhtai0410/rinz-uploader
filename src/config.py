@@ -8,7 +8,7 @@ load_dotenv()
 
 
 class BaseConfig(object):
-    PROJECT = "the-cua-tui-map"
+    PROJECT = "the-cua-tui-upload"
 
     PROJECT_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
@@ -45,5 +45,9 @@ class DefaultConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
 
     REDIS_URL = os.getenv('REDIS_URL')
-    # REDIS_USERS_STARTUP_NODES = json.loads(os.getenv('REDIS_USERS_STARTUP_NODES'))
-    MAP_KEY = os.getenv('MAP_KEY')
+
+    S3_KEY = os.getenv("S3_KEY")
+    S3_SECRET = os.getenv("S3_SECRET")
+    S3_ENDPOINT = os.getenv("S3_ENDPOINT")
+    S3_BUCKET = os.getenv("S3_BUCKET")
+    S3_URL = os.getenv("S3_URL")

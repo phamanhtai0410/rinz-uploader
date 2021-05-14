@@ -7,16 +7,17 @@ import os
 import random
 import string
 import json
+import traceback
 
 import requests
 from datetime import datetime
 
 # from bson import ObjectId
 from flask import make_response
-import msgpack
 
 
 # from .extensions import redis_cluster, redis_cache
+from sentry_sdk import capture_exception
 
 
 def get_current_time():
@@ -174,9 +175,6 @@ def json_encode_hook(obj):
     if isinstance(obj, datetime):
         obj = {'__datetime__': True, 'as_str': obj.strftime("%Y%m%dT%H:%M:%S.%f")}
 
-    if isinstance(obj, ObjectId):
-        obj = str(obj)
-
     return obj
 
 
@@ -203,9 +201,6 @@ def jsonify_dict(dct):
     for k, v in dct.items():
         if isinstance(v, datetime):
             dct[k] = v.isoformat()
-        elif isinstance(v, ObjectId):
-            dct[k] = str(v)
-
     return json.dumps(dct)
 
 
@@ -256,9 +251,6 @@ def msgpack_decode_hook(obj):
 def msgpack_encode_hook(obj):
     if isinstance(obj, datetime):
         obj = obj.strftime("%Y-%m-%dT%H:%M:%S.%f").encode()
-
-    if isinstance(obj, ObjectId):
-        obj = str(obj).decode('utf-8')
 
     return obj
 
@@ -313,3 +305,37 @@ def set_redis_cache(key, value):
     # redis_cache.set(key, output)
 
     return None
+
+
+def get_path(filename):
+    month = '{:02d}'.format(datetime.utcnow().month)
+    day = '{:02d}'.format(datetime.utcnow().day)
+    year = datetime.utcnow().year
+    return 'images/{}/{}/{}/{}_{}'.format(year, month, day, datetime.utcnow().timestamp(), filename)
+
+
+def upload_file_to_s3(file, bucket_name, acl="public-read"):
+    try:
+        path = get_path(file.filename)
+
+        def upload_callback(size, **args):
+            print(size)
+            print(args)
+
+        response = s3.upload_fileobj(
+            file,
+            Bucket=bucket_name,
+            Key=path,
+            ExtraArgs={
+                "ACL": acl
+            },
+            Callback=upload_callback
+        )
+        print('s3 response', response)
+        # uri = s3_url = path
+        return path
+
+    except Exception as e:
+        capture_exception(e)
+        traceback.print_exc()
+        return None
