@@ -313,7 +313,7 @@ def get_path(filename):
     month = '{:02d}'.format(datetime.utcnow().month)
     day = '{:02d}'.format(datetime.utcnow().day)
     year = datetime.utcnow().year
-    return 'plain/images/{}/{}/{}/{}_{}'.format(year, month, day, datetime.utcnow().timestamp(), filename)
+    return 'images/{}/{}/{}/{}_{}'.format(year, month, day, datetime.utcnow().timestamp(), filename)
 
 
 def upload_file_to_s3(file, bucket_name, acl="public-read"):
