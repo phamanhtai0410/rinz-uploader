@@ -29,7 +29,7 @@ def upload_file():
                 "msg": "success",
                 "error_code": '',
                 "data": {
-                    'url': '{}/plain/{}'.format(DefaultConfig.S3_URL, output)
+                    'url': '{}/{}'.format(DefaultConfig.S3_URL, output)
                 }
             })
     except Exception as e:
