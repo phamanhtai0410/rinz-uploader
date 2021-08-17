@@ -33,6 +33,5 @@ class AppConstants(object):
 
     # Error src
     NOT_E = ''
-    E_VOTE_KILL_OVER = 'E_VOTE_KILL_OVER'
-    E_VOTE_KILL_END = 'E_VOTE_KILL_END'
-    E_VOTE_KILL_DISABLED = 'E_VOTE_KILL_DISABLED'
+    E_SERVER_ERROR = 'E_SERVER_ERROR'
+    E_FILE_NOT_FOUND = 'E_FILE_NOT_FOUND'
