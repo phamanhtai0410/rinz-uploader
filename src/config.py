@@ -51,3 +51,8 @@ class DefaultConfig(BaseConfig):
     S3_ENDPOINT = os.getenv("S3_ENDPOINT")
     S3_BUCKET = os.getenv("S3_BUCKET")
     S3_URL = os.getenv("S3_URL")
+
+    UPLOAD_VIDEO_PATH = os.getenv("UPLOAD_VIDEO_PATH", "/mnt/upload/")
+    UPLOAD_AUDIO_PATH = os.getenv("UPLOAD_AUDIO_PATH", "/mnt/upload/")
+
+    ALLOWED_EXTENSIONS = ['mp4', 'mp3']

@@ -14,12 +14,13 @@ from datetime import datetime
 
 # from bson import ObjectId
 from flask import make_response
-
+from werkzeug.utils import secure_filename
 
 # from .extensions import redis_cluster, redis_cache
 from sentry_sdk import capture_exception
 
 from src.extensions import s3
+from .config import DefaultConfig
 
 
 def get_current_time():
@@ -341,3 +342,21 @@ def upload_file_to_s3(file, bucket_name, acl="public-read"):
         capture_exception(e)
         traceback.print_exc()
         return None
+
+def save_media_file(file):
+    try:
+        log_any("File name", secure_filename(file.filename))
+        path = os.path.join(DefaultConfig.UPLOAD_VIDEO_PATH, secure_filename(file.filename))
+        file.save(path)
+        log_any("Save file", path)
+        return path
+
+    except Exception as e:
+        capture_exception(e)
+        traceback.print_exc()
+        return None
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in DefaultConfig.ALLOWED_EXTENSIONS

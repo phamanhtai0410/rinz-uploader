@@ -10,6 +10,7 @@ services:
     volumes:
       - ./:/webapps/base-service
       - /var/log/apps/:/var/log/apps/
+      - /tmp/upload/:/mnt/upload/
     ports:
       - 5010:5005
     #env_file:

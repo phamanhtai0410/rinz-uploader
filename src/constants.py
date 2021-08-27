@@ -35,3 +35,4 @@ class AppConstants(object):
     NOT_E = ''
     E_SERVER_ERROR = 'E_SERVER_ERROR'
     E_FILE_NOT_FOUND = 'E_FILE_NOT_FOUND'
+    E_INVALID_FILE = 'E_INVALID_FILE'
