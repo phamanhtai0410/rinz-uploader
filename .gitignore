@@ -1,0 +1,7 @@
+.idea
+*.pyc
+src/config
+test
+.vscode
+venv
+.env

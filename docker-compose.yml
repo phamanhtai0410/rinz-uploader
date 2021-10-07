@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  backend:
+    # Name the service container
+    image: upload-service
+    container_name: upload-service
+    build: ./
+    restart: on-failure
+    volumes:
+      - ./:/webapps/base-service
+      - /var/log/apps/:/var/log/apps/
+      - /mnt/upload/:/mnt/upload/
+    ports:
+      - 5010:5005
+    #env_file:
+    # - ./local.env
+    networks:
+      - same-network
+    #command: python /webapps/loyalty/manage.py run
+    command: supervisord -n -c /etc/supervisor.d/supervisord.conf
+
+  # flower:
+  #   image: mher/flower
+  #   command: ["flower", "--broker=redis://83.136.252.174:6379/2", "--port=8888"]
+  #   ports:
+  #      - 8888:8888
+
+networks:
+  same-network:
+    external: true
