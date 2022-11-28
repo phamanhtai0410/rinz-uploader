@@ -318,12 +318,9 @@ def get_path(filename):
     month = '{:02d}'.format(datetime.utcnow().month)
     day = '{:02d}'.format(datetime.utcnow().day)
     year = datetime.utcnow().year
-<<<<<<< HEAD
-=======
     filename_split = filename.split('.')
     file_type = filename_split[len(filename_split) - 1]
     filename = f'{str(uuid.uuid4())}.{file_type}'
->>>>>>> 51f9606baafe2880c6bd024958d1450fab213b46
     return 'images/{}/{}/{}/{}_{}'.format(year, month, day, datetime.utcnow().timestamp(), filename)
 
 
@@ -353,10 +350,6 @@ def upload_file_to_s3(file, bucket_name, acl="public-read"):
         traceback.print_exc()
         return None
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 51f9606baafe2880c6bd024958d1450fab213b46
 def save_media_file(file):
     try:
         log_any("File name", secure_filename(file.filename))
