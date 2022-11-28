@@ -8,10 +8,7 @@ import random
 import string
 import json
 import traceback
-<<<<<<< HEAD
-=======
 import uuid
->>>>>>> 51f9606baafe2880c6bd024958d1450fab213b46
 
 import requests
 from datetime import datetime
